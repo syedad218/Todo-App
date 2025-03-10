@@ -2,25 +2,21 @@
 
 A simple Todo application built with React, TypeScript, and best practices. This application demonstrates the implementation of modern React patterns, efficient data management, and a great user experience using optimistic updates.
 
-<div align="center">
+<div align="center" style="display: flex; justify-content: center; align-items: center; gap: 24px;">
   <a href="https://create-react-app.dev/">
-    <img src="https://cdn.worldvectorlogo.com/logos/create-react-app.svg" width="60" alt="Create React App" />
+    <img src="https://cdn.worldvectorlogo.com/logos/create-react-app.svg" width="80" alt="Create React App" style="display: block;" />
   </a>
-  &nbsp;&nbsp;&nbsp;
   <a href="https://tanstack.com/query/latest">
-    <img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="60" alt="React Query" />
+    <img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="80" alt="React Query" style="display: block;" />
   </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://reactrouter.com/">
-    <img src="https://seeklogo.com/images/R/react-router-logo-AB5BFB638F-seeklogo.com.png" width="60" alt="React Router" />
+  <a href="https://reactrouter.com/" style="display: flex; align-items: center;">
+    <img src="https://reactrouter.com/_brand/React%20Router%20Brand%20Assets/React%20Router%20Logo/Light.png" width="80" height="45" alt="React Router" style="display: block;" />
   </a>
-  &nbsp;&nbsp;&nbsp;
   <a href="https://styled-components.com/">
-    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="60" alt="Styled Components" />
+    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="80" alt="Styled Components" style="display: block;" />
   </a>
-  &nbsp;&nbsp;&nbsp;
   <a href="https://www.typescriptlang.org/">
-    <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="60" alt="TypeScript" />
+    <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="80" alt="TypeScript" style="display: block;" />
   </a>
 </div>
 
