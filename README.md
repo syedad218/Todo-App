@@ -1,142 +1,140 @@
-# Todo App V2 - Complete Rewrite and Modern Architecture
+# Modern Todo App
 
-## Overview
+A simple Todo application built with React, TypeScript, and best practices. This application demonstrates the implementation of modern React patterns, efficient data management, and a great user experience using optimistic updates.
 
-This rewrites the Todo application from a class-based component architecture to a modern React application with improved architecture, functionality, and user experience. The application has been rebuilt using modern React patterns, TypeScript, React Router, React Query, and styled-components.
+<div align="center">
+  <a href="https://create-react-app.dev/">
+    <img src="https://cdn.worldvectorlogo.com/logos/create-react-app.svg" width="60" alt="Create React App" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://tanstack.com/query/latest">
+    <img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="60" alt="React Query" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://reactrouter.com/">
+    <img src="https://seeklogo.com/images/R/react-router-logo-AB5BFB638F-seeklogo.com.png" width="60" alt="React Router" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://styled-components.com/">
+    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="60" alt="Styled Components" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="60" alt="TypeScript" />
+  </a>
+</div>
 
-## Key Changes
+<div align="center">
+  <h3>Built With</h3>
+  
+  <a href="https://create-react-app.dev/">Create React App</a> •
+  <a href="https://tanstack.com/query/latest">React Query</a> •
+  <a href="https://reactrouter.com/">React Router</a> •
+  <a href="https://styled-components.com/">Styled Components</a> •
+  <a href="https://www.typescriptlang.org/">TypeScript</a>
+</div>
 
-### Architecture & Structure
+## Features
 
-- Migrated to functional components with Hooks
-- Added React Router, error boundaries, and schema validation using Zod
-- Implemented React Query for data fetching and caching
+- ✨ Modern React with TypeScript
+- 🎨 Beautiful UI with styled-components
+- 🔄 Real-time search with debouncing
+- 📱 Responsive design
+- 📊 Summary statistics
+- 🔄 Optimistic updates
+- 📄 Pagination support
+- 🔍 URL-based search and pagination
+- 🎯 Error boundaries and graceful degradation
+- 🔄 Efficient data caching with React Query
 
-### UI/UX
+## Tech Stack
 
-- Added loading states using Suspense, toast notifications and pagination for progressive user experience
-- Implemented real-time search and summary statistics
-- Created reusable components for maintainability
+- React 18
+- TypeScript
+- React Query (TanStack Query)
+- React Router
+- Styled Components
+- Zod (Schema Validation)
+- React Hot Toast
+- React Error Boundary
+- Lucide React (Icons)
 
-### Data Handling
+## Getting Started
 
-- Implemented optimistic updates and custom server endpoints
-- Added efficient cache invalidation and prefetching
-- Implemented pagination to improve data fetching performance & server resource utilization
+### Prerequisites
 
-**Example: React Query with Optimistic Updates**
+- Node.js (v18 or higher)
+- Yarn package manager
 
-```tsx
-// Optimistic update with React Query
-export const useTodoMutations = (searchTerm: string, page: number) => {
-  const toggleTodoMutation = useOptimisticMutation<Todo, ToggleMutationProps>({
-    queryKey: ["todos", searchTerm, page],
-    mutationFn: ({ id, done }: ToggleMutationProps) => toggleTodo(id, done),
-    updateFn: (oldData: TodosResponse, { id, done }: ToggleMutationProps) => {
-      return {
-        data:
-          data?.map((todo) =>
-            todo.id === id ? { ...todo, done, isPending: true } : todo
-          ) ?? [],
-        headers,
-      };
-    },
-  });
+### Installation
 
-  // isPending variable is used in the UI to show indication to the user of an ongoing mutation operation
-  // Additional mutations implementations...
+1. Clone the repository:
 
-  return {
-    toggleTodo: toggleTodoMutation.mutate,
-    addTodo: addTodoMutation.mutate,
-    deleteTodo: deleteTodoMutation.mutate,
-  };
-};
+```bash
+git clone https://github.com/syedad218/Todo-App.git
+cd Todo-App
 ```
 
-### Developer Experience
+2. Install dependencies:
 
-- Added unit tests for components and hooks
-- Implemented environment variable validation and proper error handling
-- Upgraded dependencies to latest versions
+```bash
+yarn install
+```
 
-## Technical Details
+3. Set up environment variables:
 
-### Dependencies Added
+```bash
+cp .env.dist .env
+```
 
-- `@tanstack/react-query`: For efficient data fetching and caching ❤️
-- `react-router-dom`: For application routing (page and search params)
-- `zod`: For schema validation
-- `react-hot-toast`: For toast notifications
-- `react-error-boundary`: For error handling
-- `lucide-react`: For modern icons
-- Upgraded `styled-components` to v6
+Edit the `.env` file with your configuration.
 
-### Key Features
+4. Start the development server:
 
-1. **Todo Management**:
+```bash
+# Start the backend server
+yarn start:server
 
-   - Add, delete, toggle, and search todos
-   - Optimistic updates for better UX
-   - Pagination support
-   - Summary section for todos
-   - Real-time search functionality
-   - Support URL search params for pagination and search query
+# Look at the server.js file to see the custom server code
 
-2. **Performance**:
+# In a new terminal, start the frontend
+yarn start
+```
 
-   - Debounced search to reduce API calls
-   - Efficient data caching & invalidations using React Query
-   - Optimized re-renders by `memo` memoization of components and a custom compare function
+## Development
 
-   **Example: Memoized Todo Component**
+### Available Scripts
 
-   ```tsx
-   const TodoItem = ({
-     todo,
-     completed,
-     onToggle,
-     onDelete,
-     isPending,
-   }: TodoItemProps) => {
-     const handleToggle = () => {
-       onToggle(todo.id, !completed);
-     };
+- `yarn start` - Start the development server
+- `yarn start:server` - Start the backend server
+- `yarn test` - Run tests
+- `yarn build` - Build for production
 
-     return (
-       <Item completed={completed} isPending={isPending}>
-         <Checkbox
-           type="checkbox"
-           checked={completed}
-           onChange={handleToggle}
-         />
-         <Text completed={completed}>{todo.value}</Text>
-         <DeleteTodo id={todo.id} onDelete={onDelete} />
-       </Item>
-     );
-   };
+### Development Tools
 
-   // Using memo for performance optimization, preventing re-renders when the todo object hasn't changed
-   export default memo(TodoItem, compareTodos);
-   ```
+The following development tools can be enabled by setting environment variables:
 
-3. **Error Handling**:
+- React Query DevTools: Set `REACT_APP_QUERY_DEVTOOLS=true`
+- React Scan: Set `REACT_APP_REACT_SCAN_ENABLED=true`
 
-   - Granular error boundaries around critical sections & components
-   - Graceful degradation with fallbacks UI and a retry button
-   - User-friendly error messages
+## Project Structure
 
-## Migration Notes
+```
+src/
+├── components/     # Reusable UI components
+├── lib/           # Custom React hooks, Utils & Constants
+├── routes/        # Router configuration
+├── styles/        # reusable styles like typography, button, theme, etc
+├── types/         # TypeScript types
+└── App.tsx        # Main application component
+```
 
-- Environment setup requires `.env` file (template provided in `.env.dist`)
-- copy `.env.dist` to `.env` and set the correct values
-- Run `yarn install` to install the new dependencies
-- Run `yarn start:server` to start the server
-- Run `yarn start` to start the development client
+## Contributing
 
-## Notes
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- For simluating a slow network response, each request uses a `wait` function that sleeps for 500 milliseconds
-- Development tools in dev mode can be enabled by setting the following environment variables: React Query DevTools (`REACT_APP_QUERY_DEVTOOLS=true`) and React Scan (`REACT_APP_REACT_SCAN_ENABLED=true`)
-- React Query is used to debug the data fetching and caching behavior
-- React Scan is used to debug the React components and their performance and re-renders
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
