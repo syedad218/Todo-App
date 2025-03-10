@@ -2,33 +2,37 @@
 
 A simple Todo application built with React, TypeScript, and best practices. This application demonstrates the implementation of modern React patterns, efficient data management, and a great user experience using optimistic updates.
 
-<div align="center" style="display: flex; justify-content: center; align-items: center; gap: 24px;">
+<p align="center">
   <a href="https://create-react-app.dev/">
-    <img src="https://cdn.worldvectorlogo.com/logos/create-react-app.svg" width="80" alt="Create React App" style="display: block;" />
+    <img src="https://cdn.worldvectorlogo.com/logos/create-react-app.svg" width="80" alt="Create React App" />
   </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://tanstack.com/query/latest">
-    <img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="80" alt="React Query" style="display: block;" />
+    <img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="80" alt="React Query" />
   </a>
-  <a href="https://reactrouter.com/" style="display: flex; align-items: center;">
-    <img src="https://reactrouter.com/_brand/React%20Router%20Brand%20Assets/React%20Router%20Logo/Light.png" width="80" height="45" alt="React Router" style="display: block;" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://reactrouter.com/">
+    <img src="https://reactrouter.com/_brand/React%20Router%20Brand%20Assets/React%20Router%20Logo/Light.png" width="80" height="50" alt="React Router" style="vertical-align: top; margin-top: 20px;" />
   </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://styled-components.com/">
-    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="80" alt="Styled Components" style="display: block;" />
+    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="80" alt="Styled Components" />
   </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.typescriptlang.org/">
-    <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="80" alt="TypeScript" style="display: block;" />
+    <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="80" alt="TypeScript" />
   </a>
-</div>
+</p>
 
-<div align="center">
-  <h3>Built With</h3>
-  
+<p align="center">
+  <strong>Built With</strong>
+  <br />
   <a href="https://create-react-app.dev/">Create React App</a> •
   <a href="https://tanstack.com/query/latest">React Query</a> •
   <a href="https://reactrouter.com/">React Router</a> •
   <a href="https://styled-components.com/">Styled Components</a> •
   <a href="https://www.typescriptlang.org/">TypeScript</a>
-</div>
+</p>
 
 ## Features
 
