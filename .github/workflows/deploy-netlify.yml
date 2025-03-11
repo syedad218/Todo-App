@@ -26,7 +26,6 @@ jobs:
       - name: Create necessary directories and files
         run: |
           mkdir -p netlify/functions
-          cp -r netlify/* netlify/ || true
           node netlify/prebuild.js
 
       - name: Build app
