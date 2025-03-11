@@ -11,6 +11,10 @@ const rootDir = path.join(__dirname, "..");
 // Create .env file with correct API URL for production
 const envContent = `
 REACT_APP_API_URL=/api
+REACT_APP_QUERY_STALE_TIME=5000
+REACT_APP_QUERY_RETRY=1
+REACT_APP_QUERY_DEVTOOLS=false
+REACT_APP_REACT_SCAN_ENABLED=false
 `;
 
 fs.writeFileSync(path.join(rootDir, ".env"), envContent);
