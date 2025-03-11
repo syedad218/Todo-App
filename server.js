@@ -76,7 +76,7 @@ server.get("/health", (req, res) => {
 
 server.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
   })
