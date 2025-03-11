@@ -26,13 +26,15 @@
     "zod": "^3.24.2"
   },
   "scripts": {
-    "prebuild": "node ./scripts/validate-env.mjs",
+    "prebuild": "node netlify/prebuild.js && node ./scripts/validate-env.mjs",
     "start": "yarn prebuild && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll --transformIgnorePatterns \"node_modules/(?!(nanoid)/)\"",
     "eject": "react-scripts eject",
     "start:server": "node server.js",
-    "prepare": "cp db.json.sample db.json"
+    "prepare": "cp db.json.sample db.json",
+    "netlify-dev": "netlify dev",
+    "netlify-build": "yarn build && netlify deploy --prod"
   },
   "eslintConfig": {
     "extends": [

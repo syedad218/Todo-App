@@ -2,6 +2,7 @@ import jsonServer from "json-server";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import fs from "fs";
+import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -9,11 +10,20 @@ const __dirname = dirname(__filename);
 const DB_PATH = join(__dirname, "db.json");
 
 const readDb = () => {
-  return JSON.parse(fs.readFileSync(DB_PATH));
+  try {
+    return JSON.parse(fs.readFileSync(DB_PATH));
+  } catch (error) {
+    console.error("Error reading database:", error);
+    return { todos: [] };
+  }
 };
 
 const writeDb = (data) => {
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+  try {
+    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+  } catch (error) {
+    console.error("Error writing to database:", error);
+  }
 };
 
 const normalizeValue = (value) => {
@@ -57,16 +67,33 @@ const createTodo = (req, res) => {
 };
 
 const delayMiddleware = async (req, res, next) => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 200));
   next();
 };
 
 const server = jsonServer.create();
+
+server.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
+  })
+);
+
 const router = jsonServer.router(DB_PATH);
 const middlewares = jsonServer.defaults();
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
+
+server.get("/health", (req, res) => {
+  // health check for Heroku
+  res.json({
+    status: "UP",
+    environment: process.env.NODE_ENV || "development",
+  });
+});
 
 server.use((req, res, next) => {
   if (
@@ -89,7 +116,9 @@ server.use((req, res, next) => {
 server.use(delayMiddleware);
 server.use(router);
 
-const port = 3001;
+const port = process.env.PORT || 3001;
+
 server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
+  console.log(`Database path: ${DB_PATH}`);
 });
