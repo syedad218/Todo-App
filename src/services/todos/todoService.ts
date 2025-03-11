@@ -12,8 +12,6 @@ export const fetchTodos = async (
   page: number,
   signal?: AbortSignal
 ): Promise<TodosResponse> => {
-  await wait();
-
   const { data, headers } = await apiCall<Todo[]>(
     `${TODO_BASE_URL}?_page=${page}&_limit=${TODO_PER_PAGE}`,
     {
@@ -26,8 +24,6 @@ export const fetchTodos = async (
 };
 
 export const toggleTodo = async (id: string, done: boolean): Promise<Todo> => {
-  await wait();
-
   const { data } = await apiCall<Todo>(
     `${TODO_BASE_URL}/${id}`,
     {
@@ -41,8 +37,6 @@ export const toggleTodo = async (id: string, done: boolean): Promise<Todo> => {
 };
 
 export const addTodo = async (todo: Todo): Promise<Todo> => {
-  await wait();
-
   const { data } = await apiCall<Todo>(
     TODO_BASE_URL,
     {
@@ -56,8 +50,6 @@ export const addTodo = async (todo: Todo): Promise<Todo> => {
 };
 
 export const deleteTodo = async (id: string): Promise<void> => {
-  await wait();
-
   const { data } = await apiCall<void>(`${TODO_BASE_URL}/${id}`, {
     method: "DELETE",
   });
@@ -88,8 +80,6 @@ export const getSummary = async (): Promise<{
   total: number;
   done: number;
 }> => {
-  await wait();
-
   const { data } = await apiCall<{
     total: number;
     done: number;

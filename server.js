@@ -2,6 +2,7 @@ import jsonServer from "json-server";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import fs from "fs";
+import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -57,7 +58,7 @@ const createTodo = (req, res) => {
 };
 
 const delayMiddleware = async (req, res, next) => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 200));
   next();
 };
 
@@ -67,6 +68,19 @@ const middlewares = jsonServer.defaults();
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
+
+// health check endpoint
+server.get("/health", (req, res) => {
+  res.json({ status: "UP" });
+});
+
+server.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
+  })
+);
 
 server.use((req, res, next) => {
   if (
