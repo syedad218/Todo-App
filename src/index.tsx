@@ -1,4 +1,3 @@
-import { scan } from "react-scan";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { StyleSheetManager, ThemeProvider } from "styled-components";
@@ -8,14 +7,10 @@ import { GlobalStyle } from "styles/globalStyles";
 import { ErrorBoundary, ErrorFallback } from "components/Error";
 import { getQueryClient } from "lib/utils/queryClient";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { CONFIG, isQueryDevtoolsEnabled, isReactScanEnabled } from "config";
+import { CONFIG, isQueryDevtoolsEnabled } from "config";
 import { shouldForwardProps } from "lib/utils/shouldForwardProps";
 import { RouterProvider } from "react-router-dom";
 import { router } from "routes";
-
-scan({
-  enabled: !!isReactScanEnabled,
-});
 
 const queryClient = getQueryClient(CONFIG.queryClientConfig);
 
